@@ -2,7 +2,7 @@ import test from 'ava'
 var client = require('node-rest-client-promise').Client()
 
 test('Example test', t => {
-  return client.getPromise('http://api.openweathermap.org/data/2.5/weather?q=London&APPID=b05787eda8d8f7967925692ea52134d2')
+  return client.getPromise('http://api.openweathermap.org/data/2.5/weather?q=Paris&APPID=f82ca33a6cc024fc5ccdbac8adea377b')
     .catch((error) => {
       t.fail()
       throw error
@@ -12,3 +12,4 @@ test('Example test', t => {
       t.is(res.response.statusCode, 200)
     })
 })
+ 
