@@ -53,6 +53,17 @@ client.on('message', msg => {
           msg.channel.sendMessage(translatedText)
         })
       }
+    } else if (input[0] === '/traduis-vers') {
+      if (input.length === 1) {
+        msg.channel.sendMessage('Donnez une langue de destination et un texte à traduire.')
+      } else if (input.length === 2) {
+        msg.channel.sendMessage('Donnez un texte à traduire.')
+      } else {
+        translate(msg.content.substring(15 + input[1].length), input[1])
+        .then(translatedText => {
+          msg.channel.sendMessage(translatedText)
+        })
+      }
     }
   }
 })
