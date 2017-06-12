@@ -48,7 +48,7 @@ client.on('message', msg => {
       if (input.length === 1) {
         msg.channel.sendMessage('Donnez un texte à traduire en anglais.')
       } else {
-        translate(msg.content.substring(9),'en')
+        translate(msg.content.substring(9), 'en')
         .then(translatedText => {
           msg.channel.sendMessage(translatedText)
         })
