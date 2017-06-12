@@ -44,6 +44,15 @@ client.on('message', msg => {
           msg.channel.sendMessage(pokemonBonjour)
         })
       }
+    } else if (input[0] === '/traduis') {
+      if (input.length === 1) {
+        msg.channel.sendMessage('Donnez un texte à traduire en anglais.')
+      } else {
+        translate(msg.content.substring(9),'en')
+        .then(translatedText => {
+          msg.channel.sendMessage(translatedText)
+        })
+      }
     }
   }
 })
@@ -102,5 +111,17 @@ function pokemon (name) {
       console.log('Nouvel Username : ' + client.user.username)
       // console.log('Nouvel Avatar   : ' + client.user.avatarURL)
       return 'Name : ' + res.data.name + '\nId : ' + res.data.id + '\nHeight : ' + res.data.height + '\nWeight : ' + res.data.weight
+    })
+}
+
+function translate (text, lang) {
+  var args = {
+    parameters: {'q': text, 'target': lang, 'format': 'text', 'key': 'AIzaSyDtM-DG6jVikfCI1MUrw31VEbvFm5Ifezw'}
+  }
+  return httpClient.postPromise('https://translation.googleapis.com/language/translate/v2', args)
+    .then((res) => {
+      var detectedLanguage = res.data.data.translations[0].detectedSourceLanguage
+      var translatedText = res.data.data.translations[0].translatedText
+      return 'Translation FROM ' + detectedLanguage + ' TO ' + lang + ' :\n' + translatedText
     })
 }
