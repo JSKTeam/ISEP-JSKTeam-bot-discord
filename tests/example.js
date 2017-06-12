@@ -12,4 +12,27 @@ test('Example test', t => {
       t.is(res.response.statusCode, 200)
     })
 })
- 
+
+test('Example test', t => {
+  return client.getPromise('http://api.openweathermap.org/data/2.5/forecast?q=Paris&APPID=f82ca33a6cc024fc5ccdbac8adea377b')
+    .catch((error) => {
+      t.fail()
+      throw error
+    })
+    .then((res) => {
+      console.log(res.response.statusCode)
+      t.is(res.response.statusCode, 200)
+    })
+})
+
+test('Example test', t => {
+  return client.getPromise('http://pokeapi.co/api/v2/pokemon/pikachu')
+    .catch((error) => {
+      t.fail()
+      throw error
+    })
+    .then((res) => {
+      console.log(res.response.statusCode)
+      t.is(res.response.statusCode, 200)
+    })
+})

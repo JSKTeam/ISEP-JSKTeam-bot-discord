@@ -37,6 +37,15 @@ client.on('message', msg => {
           msg.channel.sendMessage(weather)
         })
       }
+    } else if (input[0] === '/pokemon') {
+      if (input.length === 1) {
+        msg.channel.sendMessage('Précisez un nom ou un numero de pokemon')
+      } else if (input.length === 2) {
+        pokemon(input[1])
+        .then(pokemonBonjour => {
+          msg.channel.sendMessage(pokemonBonjour)
+        })
+      }
     }
   }
 })
@@ -83,3 +92,18 @@ function mto1 (ville) {
       // return res.data.weather[0].description
     })
 }
+
+function pokemon (name) {
+  return httpClient.getPromise('http://pokeapi.co/api/v2/pokemon/' + name)
+    .then((res) => {
+      console.log(res.response.statusCode)
+      console.log('Ancien Username : ' + client.user.username)
+      // console.log('Ancien Avatar   : ' + client.user.avatarURL)
+      client.user.setUsername(res.data.name)
+      client.user.setAvatar('https://img.pokemondb.net/artwork/' + res.data.name + '.jpg')
+      console.log('Nouvel Username : ' + client.user.username)
+      // console.log('Nouvel Avatar   : ' + client.user.avatarURL)
+      return 'Name : ' + res.data.name + '\nId : ' + res.data.id + '\nHeight : ' + res.data.height + '\nWeight : ' + res.data.weight
+    })
+}
+
