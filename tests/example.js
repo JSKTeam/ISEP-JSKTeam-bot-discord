@@ -38,7 +38,7 @@ test('test pokemon', t => {
 })
 
 test('test traduction', t => {
-  return client.getPromise('https://translation.googleapis.com/language/translate/v2')
+  return client.PostPromise('https://translation.googleapis.com/language/translate/v2')
     .catch((error) => {
       t.fail()
       throw error
