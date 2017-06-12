@@ -37,8 +37,6 @@ test('test pokemon', t => {
     })
 })
 
-
-
 test('test traduction', t => {
   var args = {
     parameters: {'q': 'Bonjour', 'target': 'en', 'format': 'text', 'key': 'AIzaSyDtM-DG6jVikfCI1MUrw31VEbvFm5Ifezw'}
