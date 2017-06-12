@@ -3,8 +3,6 @@ const config = require('./config.js')
 const client = new Discord.Client()
 const httpClient = require('node-rest-client-promise').Client()
 
-
-
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
 })
@@ -106,4 +104,3 @@ function pokemon (name) {
       return 'Name : ' + res.data.name + '\nId : ' + res.data.id + '\nHeight : ' + res.data.height + '\nWeight : ' + res.data.weight
     })
 }
-
