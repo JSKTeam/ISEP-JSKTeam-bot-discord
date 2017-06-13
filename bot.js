@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const config = require('./config.js')
 const client = new Discord.Client()
 const httpClient = require('node-rest-client-promise').Client()
-
+var myRegex = new RegExp(/youtube:/)
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.username}!`)
 })
@@ -64,6 +64,22 @@ client.on('message', msg => {
           msg.channel.sendMessage(translatedText)
         })
       }
+    } else if (msg.content.match(myRegex)) {
+      var elem = msg.content.split(':')
+      let myvar = elem[1]
+      let myvar2 = elem[2]
+// msg.channel.sendMessage('Hello to you too, fellow !')
+      var client2 = require('node-rest-client-promise').Client()
+      client2.getPromise('https://www.googleapis.com/youtube/v3/search?q=' + myvar + '&maxResults=25&part=snippet&type=' + myvar2 + '&key=AIzaSyDdYLsCVsJAGWGO06DBXBOKnxOMG97pySE')
+      .catch((error) => {
+      })
+      .then((res) => {
+        var i = 0
+        while (i < 3) {
+          msg.channel.sendMessage(res.data.items[i].snippet.title)
+          i++
+        }
+      })
     }
   }
 })
