@@ -1,4 +1,7 @@
-Adding Readme
+Groupe:
+    Katia Firoud
+    Sofian Ettafki
+    Jeremy De Giorgi
 
 OpenweatherMap
 En écrivant : 

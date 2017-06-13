@@ -71,8 +71,8 @@ client.on('message', msg => {
 // msg.channel.sendMessage('Hello to you too, fellow !')
       var client2 = require('node-rest-client-promise').Client()
       client2.getPromise('https://www.googleapis.com/youtube/v3/search?q=' + myvar + '&maxResults=25&part=snippet&type=' + myvar2 + '&key=AIzaSyDdYLsCVsJAGWGO06DBXBOKnxOMG97pySE')
-      .catch((error) => {
-      })
+      // .catch((error) => {
+      // })
       .then((res) => {
         var i = 0
         while (i < 3) {
